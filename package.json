@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "pages:build": "opennextjs-cloudflare build",
+    "build": "sh -c 'if [ \"$OPENNEXT_BUILDING\" = 1 ]; then next build; else OPENNEXT_BUILDING=1 opennextjs-cloudflare build; fi'",
     "start": "next start",
     "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "npm run build && opennextjs-cloudflare preview",
+    "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
