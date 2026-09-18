@@ -15,12 +15,11 @@ function getClient(): JKT48Connect {
     throw new Error("JKT48_API_KEY belum diset");
   }
 
-  client = new JKT48Connect({
+  lient = new JKT48Connect({
     apiKey,
-    timeout: 15000,
+    timeoutMs: 15000,
     retries: 2,
   });
-
   return client;
 }
 
